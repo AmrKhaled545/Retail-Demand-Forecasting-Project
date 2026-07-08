@@ -1,5 +1,7 @@
 # Retail Demand Forecasting 🛒📊
 
+🔗 **Live App:** [retail-demand-forecasting-project-depi2026.streamlit.app](https://retail-demand-forecasting-project-depi2026.streamlit.app/)
+
 ## Project Overview
 
 This project predicts daily sales of Walmart retail products over a **28-day forecasting horizon**, using the [M5 Forecasting](https://www.kaggle.com/competitions/m5-forecasting-accuracy) dataset — historical sales, item prices, and calendar/event data across multiple stores and U.S. states. The goal is to turn that raw data into a memory-efficient, end-to-end pipeline that trains a demand forecasting model and serves its predictions through an interactive app, to support inventory and demand planning decisions.
@@ -85,6 +87,8 @@ A companion `streamlit_app.py` reads the notebook's exported artifacts and provi
    streamlit run streamlit_app.py
    ```
    Make sure `streamlit_app.py` sits in the same folder as the generated `demand_forecast_28days_*products.csv` and `sales_history_90days_*products.csv` files — the app discovers them automatically.
+
+   Or just try the already-deployed version: **[retail-demand-forecasting-project-depi2026.streamlit.app](https://retail-demand-forecasting-project-depi2026.streamlit.app/)**
 
 ## ⏭️ Next Steps (Upcoming Commits)
 
