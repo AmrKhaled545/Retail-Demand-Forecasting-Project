@@ -23,6 +23,7 @@ import glob
 import json
 import os
 
+import gdown
 import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
@@ -59,6 +60,43 @@ MAX_HORIZON = 28
 REQUIRED_FORECAST_COLS = {"item_id", "store_id", "state_id", "date", "predicted_sales"}
 REQUIRED_HISTORY_COLS = {"item_id", "store_id", "state_id", "date", "sales"}
 
+# --------------------------------------------------------------------------
+# Google Drive fallback — used when a data file isn't already sitting next
+# to app.py (e.g. it was too big/awkward to keep in the GitHub repo).
+#
+# How to get a file ID:
+#   1. In Google Drive, right-click the file -> Share -> set to
+#      "Anyone with the link" (Viewer).
+#   2. Copy the share link, e.g.:
+#        https://drive.google.com/file/d/1AbCDeFGhIJKLmnoPQRstuVWxyz/view
+#   3. The file ID is the part between /d/ and /view:
+#        1AbCDeFGhIJKLmnoPQRstuVWxyz
+#
+# Leave a value as "" to skip downloading that file (e.g. if you keep it
+# committed normally in the repo instead).
+# --------------------------------------------------------------------------
+GDRIVE_FILE_IDS = {
+    "sales_history_90days_1000products.csv": "1AwV2QI5bxGMpwyd-TP-oKbXwiTHbOTfk",  # <-- paste the file ID here
+    "demand_forecast_28days_1000products.csv": "1tb3sAoDPWFZAlMnkDaoBEnNmk66eoU5i",  # <-- optional, leave "" if this one stays in the repo
+}
+
+
+def _ensure_data_files():
+    """Download any configured file from Google Drive if it isn't present locally."""
+    for filename, file_id in GDRIVE_FILE_IDS.items():
+        if not file_id:
+            continue
+        if os.path.exists(filename) and os.path.getsize(filename) > 0:
+            continue
+        try:
+            gdown.download(
+                f"https://drive.google.com/uc?id={file_id}",
+                filename,
+                quiet=False,
+            )
+        except Exception as e:
+            st.warning(f"Couldn't download {filename} from Google Drive: {e}")
+
 
 # --------------------------------------------------------------------------
 # Data loading
@@ -73,6 +111,8 @@ def _latest_file(pattern: str):
 
 @st.cache_data(show_spinner="Loading forecast and history data...")
 def load_data():
+    _ensure_data_files()
+
     forecast_path = _latest_file(FORECAST_PATTERN)
     history_path = _latest_file(HISTORY_PATTERN)
 
