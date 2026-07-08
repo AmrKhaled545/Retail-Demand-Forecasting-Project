@@ -9,6 +9,8 @@
 - Omar Abdelkhaleq Ahmed
 - Youssef Gomaa Hassan Mohamed
 
+🔗 **Live App:** [retail-demand-forecasting-project-depi2026.streamlit.app](https://retail-demand-forecasting-project-depi2026.streamlit.app/)
+
 ---
 
 ## Summary
@@ -78,7 +80,8 @@ The data spans multiple U.S. states, stores, and product categories
 - **Interactive deployment** — a Streamlit application lets a user explore
   forecasts by state/store/product or upload a bulk list of products and
   receive a forecast summary table, all without needing to touch the
-  notebook.
+  notebook. Live at
+  [retail-demand-forecasting-project-depi2026.streamlit.app](https://retail-demand-forecasting-project-depi2026.streamlit.app/).
 
 ## Target Users / Use Cases
 
