@@ -1,6 +1,6 @@
 # Project Documentation — Retail Demand Forecasting
 
-**Digital Egypt Pioneers Initiative (DEPI)** · Team 5 · GIZ4_AIS4_S4
+**Digital Egypt Pioneers Initiative (DEPI)** · Team 5 · GIZ4 / AIS4 / S4
 **Instructor:** Eng. Ahmed Ayman
 
 **Team Members:**
@@ -285,6 +285,8 @@ large depending on `TOP_N`.
 ---
 
 ## 11. Streamlit Application
+
+🔗 **Live deployment:** [retail-demand-forecasting-project-depi2026.streamlit.app](https://retail-demand-forecasting-project-depi2026.streamlit.app/)
 
 `app.py` reads the forecast and history CSVs described above (auto-detected
 via `glob`, using the most recently modified matching file) and provides
